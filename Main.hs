@@ -1,17 +1,35 @@
-import Data.Maybe
+-- Letra c
 
-data Stack a = Stack [a] deriving Show
+empty [] = True
+empty (corpo) = False
 
-empty :: Stack a
-empty = Stack []
+-- Considerando que o topo da pilha seja sempre o primeiro elemento (letra d)
 
-push :: a -> Stack a -> Stack a
-push x (Stack xs) = Stack (x:xs)
+push x []  = [x]
+push x (corpo) = (x : corpo)
 
-pop :: Stack a -> (Maybe a, Stack a)
-pop (Stack []) = (Nothing, Stack [])
-pop (Stack (x:xs)) = (Just x, Stack xs)
+-- Letra e/f
 
-push_N_values [] (Stack xs) = Stack xs
-push_N_values (x : []) (Stack xs) = push x (Stack xs)
-push_N_values (cab:corpo) (Stack xs) = Stack(cab : push_N_values corpo xs) 
+push_n_values [] (corpo) = corpo
+push_n_values (x : []) (corpo) = x : corpo
+push_n_values (cab1 : corpo1) (corpo2) = cab1 : push_n_values (corpo1) (corpo2)
+
+
+-- Letra g
+
+pop [] = []
+pop (cab : []) = [cab]
+pop (cab : corpo) = (corpo)
+
+-- Letra h
+
+pop_n_values n (cab:corpo) 
+    | n == 0 = (cab : corpo)
+    | (cab:corpo) == [] = []
+    | otherwise = pop_n_values (n-1) (corpo)
+
+--Letra i
+
+top [] = -1
+top (x : []) = x
+top (cab : corpo) = cab
